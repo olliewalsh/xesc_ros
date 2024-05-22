@@ -79,9 +79,11 @@ xesc_2040_driver::Xesc2040Driver::Xesc2040Driver(ros::NodeHandle &nh, ros::NodeH
 void xesc_2040_driver::Xesc2040Driver::getStatus(xesc_msgs::XescStateStamped &state_msg) {
     if(!xesc_interface)
         return;
+    auto last_seq = status.seq;
     xesc_interface->get_status(&status);
 
-    state_msg.header.stamp = ros::Time::now();
+    if(status.seq != last_seq)
+        state_msg.header.stamp = ros::Time::now();
     state_msg.state.connection_state = status.connection_state;
     state_msg.state.fw_major = status.fw_version_major;
     state_msg.state.fw_minor = status.fw_version_minor;
