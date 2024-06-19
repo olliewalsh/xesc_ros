@@ -99,6 +99,9 @@ namespace vesc_driver {
         vesc_.setDutyCycle(duty_cycle);
     }
 
+    void VescDriver::setSpeed(double erpm) {
+        vesc_.setSpeed(erpm);
+    }
 
     VescDriver::CommandLimit::CommandLimit(const ros::NodeHandle &nh, const std::string &str,
                                            const boost::optional<double> &min_lower,

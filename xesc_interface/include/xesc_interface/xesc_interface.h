@@ -14,6 +14,7 @@ namespace xesc_interface {
         virtual void getStatus(xesc_msgs::XescStateStamped &state)=0;
         virtual void getStatusBlocking(xesc_msgs::XescStateStamped &state)=0;
         virtual void setDutyCycle(float duty_cycle)=0;
+        virtual void setSpeed(double erpm)=0;
         virtual void stop()=0;
 
     };

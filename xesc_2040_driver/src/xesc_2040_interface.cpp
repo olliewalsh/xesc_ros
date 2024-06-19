@@ -189,6 +189,10 @@ namespace xesc_2040_driver {
         send(reinterpret_cast<uint8_t *>(&controlPacket), sizeof(controlPacket));
     }
 
+    void Xesc2040Interface::setSpeed(double erpm) {
+        return; // Not yet implemented
+    }
+
     void Xesc2040Interface::start(const std::string &port) {
         port_ = port;
         // start up a monitoring thread

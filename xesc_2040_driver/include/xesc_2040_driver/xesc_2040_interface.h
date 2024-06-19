@@ -54,6 +54,8 @@ namespace xesc_2040_driver {
 
         void setDutyCycle(double duty_cycle);
 
+        void setSpeed(double erpm);
+
         void start(const std::string &port);
 
         void stop();

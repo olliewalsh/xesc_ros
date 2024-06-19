@@ -128,3 +128,9 @@ void xesc_2040_driver::Xesc2040Driver::setDutyCycle(float duty_cycle) {
         xesc_interface->setDutyCycle(duty_cycle);
     }
 }
+
+void xesc_2040_driver::Xesc2040Driver::setSpeed(double erpm) {
+    if(xesc_interface) {
+        xesc_interface->setSpeed(erpm);
+    }
+}

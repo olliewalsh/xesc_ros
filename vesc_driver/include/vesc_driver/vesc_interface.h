@@ -115,7 +115,7 @@ namespace vesc_driver {
 
         void setBrake(double brake);
 
-        void setSpeed(double speed);
+        void setSpeed(double erpm);
 
         void setPosition(double position);
 

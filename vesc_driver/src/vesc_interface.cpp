@@ -267,8 +267,8 @@ namespace vesc_driver {
         send(VescPacketSetCurrentBrake(brake));
     }
 
-    void VescInterface::setSpeed(double speed) {
-        send(VescPacketSetVelocityERPM(speed));
+    void VescInterface::setSpeed(double erpm) {
+        send(VescPacketSetVelocityERPM(erpm));
     }
 
     void VescInterface::setPosition(double position) {

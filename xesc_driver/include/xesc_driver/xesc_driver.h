@@ -23,6 +23,8 @@ namespace xesc_driver  {
 
         void setDutyCycle(float duty_cycle) override;
 
+        void setSpeed(double erpm) override;
+
         void stop() override;
 
     private:
