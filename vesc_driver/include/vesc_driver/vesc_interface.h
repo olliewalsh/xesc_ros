@@ -119,6 +119,8 @@ namespace vesc_driver {
 
         void setPosition(double position);
 
+        void setServoPos(double servo_pos);
+
         void start(const std::string &port);
 
         void stop();
@@ -127,6 +129,7 @@ namespace vesc_driver {
         void wait_for_status(VescStatusStruct *status);
         void requestFWVersion();
         void requestState();
+        void enableStatusPoll(bool enablePoll);
 
     private:
         /**
@@ -164,6 +167,8 @@ namespace vesc_driver {
         struct VescStatusStruct status_;
 
         uint32_t state_request_millis;
+
+        bool enableAutoPoll;
     };
 
 }  // namespace xesc_2040_driver

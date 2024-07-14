@@ -22,6 +22,7 @@ float64 temperature_pcb      # temperature of printed circuit board (degrees Cel
 float64 temperature_motor    # temperature of connected motor (degrees Celsius)
 float64 current_input        # input current (ampere)
 float64 duty_cycle           # duty cycle (0 to 1)
+float64 speed_erpm           # electrical rpm of motor
 uint32 tacho                 # wheel ticks
 uint32   fault_code
 uint32 tacho_absolute        # wheel ticks absolute

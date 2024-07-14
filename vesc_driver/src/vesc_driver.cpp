@@ -71,6 +71,7 @@ namespace vesc_driver {
         state_msg.state.temperature_motor = vesc_status.temperature_motor;
         state_msg.state.current_input = vesc_status.current_input;
         state_msg.state.duty_cycle = vesc_status.duty_cycle;
+        state_msg.state.speed_erpm = vesc_status.speed_erpm;
         state_msg.state.tacho = vesc_status.tacho;
         state_msg.state.fault_code = vesc_status.fault_code;
         state_msg.state.tacho_absolute = vesc_status.tacho_absolute;
@@ -95,10 +96,25 @@ namespace vesc_driver {
         state_msg.state.direction = vesc_status.direction;
     }
 
+    void VescDriver::requestStatus() {
+        vesc_.requestState();
+    }
+
+    void VescDriver::enableStatusPoll(bool enablePoll) {
+        vesc_.enableStatusPoll(enablePoll);
+    }
+
     void VescDriver::setDutyCycle(float duty_cycle) {
         vesc_.setDutyCycle(duty_cycle);
     }
 
+    void VescDriver::setSpeed(float erpm) {
+        vesc_.setSpeed(erpm);
+    }
+
+    void VescDriver::setServoPos(float servo_pos) {
+        vesc_.setServoPos(servo_pos);
+    }
 
     VescDriver::CommandLimit::CommandLimit(const ros::NodeHandle &nh, const std::string &str,
                                            const boost::optional<double> &min_lower,

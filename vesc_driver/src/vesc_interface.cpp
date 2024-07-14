@@ -44,6 +44,7 @@ namespace vesc_driver {
               state_request_millis(state_request_millis) {
 
         error_handler_ = error_handler;
+        enableAutoPoll = true;
     }
 
     VescInterface::~VescInterface() {
@@ -71,7 +72,7 @@ namespace vesc_driver {
                     requestFWVersion();
                 }
                 continue;
-            } else if(status_.connection_state == CONNECTED || status_.connection_state == CONNECTED_INCOMPATIBLE_FW) {
+            } else if((status_.connection_state == CONNECTED || status_.connection_state == CONNECTED_INCOMPATIBLE_FW) && enableAutoPoll) {
                 requestState();
             }
         }
@@ -251,6 +252,10 @@ namespace vesc_driver {
         send(VescPacketRequestFWVersion());
     }
 
+    void VescInterface::enableStatusPoll(bool enablePoll) {
+        enableAutoPoll = enablePoll;
+    }
+
     void VescInterface::requestState() {
         send(VescPacketRequestValues());
     }
@@ -273,6 +278,10 @@ namespace vesc_driver {
 
     void VescInterface::setPosition(double position) {
         send(VescPacketSetPos(position));
+    }
+
+    void VescInterface::setServoPos(double servo_pos) {
+        send(VescPacketSetServoPos(servo_pos));
     }
 
     void VescInterface::start(const std::string &port) {

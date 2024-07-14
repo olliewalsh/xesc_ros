@@ -70,6 +70,18 @@ void xesc_yfr4_driver::XescYFR4Driver::getStatusBlocking(xesc_msgs::XescStateSta
     state_msg.state.fault_code = status.fault_code;
 }
 
+void xesc_yfr4_driver::XescYFR4Driver::requestStatus() {
+    ROS_ERROR_STREAM("Error: XescYFR4Driver invalid call:requestStatus");
+    ros::shutdown();
+}
+
+void xesc_yfr4_driver::XescYFR4Driver::enableStatusPoll(bool enablePoll) {
+    if(enablePoll == false) {
+        ROS_ERROR_STREAM("Error: XescYFR4Driver invalid argument:enableStatusPoll(false)");
+        ros::shutdown();
+    }
+}
+
 void xesc_yfr4_driver::XescYFR4Driver::stop() {
     ROS_INFO_STREAM("Stopping xesc YardForce R4 adapter driver");
     xesc_interface->stop();
@@ -80,4 +92,14 @@ void xesc_yfr4_driver::XescYFR4Driver::setDutyCycle(float duty_cycle) {
     if (xesc_interface) {
         xesc_interface->setDutyCycle(duty_cycle);
     }
+}
+
+void xesc_yfr4_driver::XescYFR4Driver::setSpeed(float eprm) {
+    ROS_ERROR_STREAM("Error: XescYFR4Driver invalid call:setSpeed");
+    ros::shutdown();
+}
+
+void xesc_yfr4_driver::XescYFR4Driver::setServoPos(float servo_pos) {
+    ROS_ERROR_STREAM("Error: XescYFR4Driver invalid call:setServoPos");
+    ros::shutdown();
 }

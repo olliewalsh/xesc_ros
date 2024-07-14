@@ -17,7 +17,15 @@ namespace xesc_2040_driver  {
 
         void getStatusBlocking(xesc_msgs::XescStateStamped &state) override;
 
+        void requestStatus() override;
+
+        void enableStatusPoll(bool enablePoll) override;
+
         void setDutyCycle(float duty_cycle) override;
+
+        void setSpeed(float eprm) override;
+
+        void setServoPos(float servo_pos) override;
 
         void stop() override;
 

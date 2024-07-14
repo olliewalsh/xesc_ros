@@ -61,7 +61,15 @@ public:
 
     void getStatusBlocking(xesc_msgs::XescStateStamped &state) override;
 
+    void requestStatus() override;
+
+    void enableStatusPoll(bool enablePoll) override;
+
     void setDutyCycle(float duty_cycle) override;
+
+    void setSpeed(float erpm) override;
+
+    void setServoPos(float servo_pos)  override;
 
     VescDriver(ros::NodeHandle &nh, ros::NodeHandle &private_nh);
 

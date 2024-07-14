@@ -90,6 +90,7 @@ void xesc_2040_driver::Xesc2040Driver::getStatus(xesc_msgs::XescStateStamped &st
     state_msg.state.temperature_motor = status.temperature_motor;
     state_msg.state.current_input = status.current_input;
     state_msg.state.duty_cycle = status.duty_cycle;
+    state_msg.state.speed_erpm = 0.0;
     state_msg.state.tacho = status.tacho;
     state_msg.state.tacho_absolute = status.tacho_absolute;
     state_msg.state.direction = status.direction;
@@ -116,6 +117,18 @@ void xesc_2040_driver::Xesc2040Driver::getStatusBlocking(xesc_msgs::XescStateSta
     state_msg.state.fault_code = status.fault_code;
 }
 
+void xesc_2040_driver::Xesc2040Driver::requestStatus() {
+    ROS_ERROR_STREAM("Error: Xesc2040Driver invalid call:requestStatus");
+    ros::shutdown();
+}
+
+void xesc_2040_driver::Xesc2040Driver::enableStatusPoll(bool enablePoll) {
+    if(enablePoll == false) {
+        ROS_ERROR_STREAM("Error: Xesc2040Driver invalid argument:enableStatusPoll(false)");
+        ros::shutdown();
+    }
+}
+
 void xesc_2040_driver::Xesc2040Driver::stop() {
     ROS_INFO_STREAM("stopping XESC2040 driver");
     xesc_interface->stop();
@@ -127,4 +140,14 @@ void xesc_2040_driver::Xesc2040Driver::setDutyCycle(float duty_cycle) {
     if(xesc_interface) {
         xesc_interface->setDutyCycle(duty_cycle);
     }
+}
+
+void xesc_2040_driver::Xesc2040Driver::setSpeed(float eprm) {
+    ROS_ERROR_STREAM("Error: Xesc2040Driver invalid call:setSpeed");
+    ros::shutdown();
+}
+
+void xesc_2040_driver::Xesc2040Driver::setServoPos(float servo_pos) {
+    ROS_ERROR_STREAM("Error: Xesc2040Driver invalid call:setServoPos");
+    ros::shutdown();
 }

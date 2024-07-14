@@ -32,6 +32,10 @@ void xesc_driver::XescDriver::getStatus(xesc_msgs::XescStateStamped &state_msg) 
     xesc_driver->getStatus(state_msg);
 }
 
+void xesc_driver::XescDriver::requestStatus() {
+    xesc_driver->requestStatus();
+}
+
 void xesc_driver::XescDriver::getStatusBlocking(xesc_msgs::XescStateStamped &state_msg) {
     if (!xesc_driver)
         return;
@@ -48,6 +52,24 @@ void xesc_driver::XescDriver::setDutyCycle(float duty_cycle) {
     if (!xesc_driver)
         return;
     xesc_driver->setDutyCycle(duty_cycle);
+}
+
+void xesc_driver::XescDriver::setSpeed(float erpm) {
+    if (!xesc_driver)
+        return;
+    xesc_driver->setSpeed(erpm);
+}
+
+void xesc_driver::XescDriver::setServoPos(float servo_pos) {
+    if (!xesc_driver)
+        return;
+    xesc_driver->setServoPos(servo_pos);
+}
+
+void xesc_driver::XescDriver::enableStatusPoll(bool enablePoll) {
+    if (!xesc_driver)
+        return;
+    xesc_driver->enableStatusPoll(enablePoll);
 }
 
 xesc_driver::XescDriver::~XescDriver() {
