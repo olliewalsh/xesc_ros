@@ -102,7 +102,7 @@ namespace vesc_driver {
          * @param port Address of the serial port, e.g. '/dev/ttyUSB0'.
          *
          */
-        VescInterface(const ErrorHandlerFunction &error_handler, uint32_t state_request_millis = 20);
+        VescInterface(const ErrorHandlerFunction &error_handler, uint32_t state_request_millis = 50);
 
         /**
          * VescInterface destructor.
@@ -164,6 +164,8 @@ namespace vesc_driver {
         struct VescStatusStruct status_;
 
         uint32_t state_request_millis;
+        std::mutex last_state_request_mutex_;
+        std::chrono::time_point<std::chrono::steady_clock> last_state_request;
     };
 
 }  // namespace xesc_2040_driver
