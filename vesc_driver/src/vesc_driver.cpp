@@ -45,8 +45,11 @@ namespace vesc_driver {
             ROS_FATAL("VESC communication port parameter required.");
             throw ros::InvalidParameterException("VESC communication port parameter required.");
         }
-
-        vesc_.start(port);
+        int baudrate;
+        if (!private_nh.getParam("baudrate", baudrate)) {
+            baudrate = 115200;
+        }
+        vesc_.start(port, baudrate);
     }
 
 

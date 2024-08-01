@@ -119,7 +119,7 @@ namespace vesc_driver {
 
         void setPosition(double position);
 
-        void start(const std::string &port);
+        void start(const std::string &port, const uint32_t &baudrate);
 
         void stop();
 
@@ -157,6 +157,7 @@ namespace vesc_driver {
         ErrorHandlerFunction error_handler_;
         serial::Serial serial_;
         std::string port_;
+        uint32_t baudrate_;
         std::mutex status_mutex_;
         // since multiple threads will call the send() function, we need a mutex.
         std::mutex serial_tx_mutex_;
