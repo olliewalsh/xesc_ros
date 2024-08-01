@@ -56,7 +56,11 @@ namespace vesc_driver {
             pole_pairs = 1;
         }
 
-        vesc_.start(port);
+        int baudrate;
+        if (!private_nh.getParam("baudrate", baudrate)) {
+            baudrate = 115200;
+        }
+        vesc_.start(port, baudrate);
     }
 
 

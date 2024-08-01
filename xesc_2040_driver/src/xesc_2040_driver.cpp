@@ -20,10 +20,15 @@ xesc_2040_driver::Xesc2040Driver::Xesc2040Driver(ros::NodeHandle &nh, ros::NodeH
     float min_pcb_temp;
     float max_pcb_temp;
     std::string serial_port;
+    int baudrate;
 
     if(!private_nh.getParam("serial_port", serial_port)) {
         ROS_ERROR_STREAM("You need to provide parameter serial_port.");
         throw ros::InvalidParameterException("You need to provide parameter serial_port.");
+    }
+
+    if (!private_nh.getParam("baudrate", baudrate)) {
+        baudrate = 115200;
     }
 
     for(int i = 0; i < 8; i++) {
@@ -73,7 +78,7 @@ xesc_2040_driver::Xesc2040Driver::Xesc2040Driver(ros::NodeHandle &nh, ros::NodeH
                                     min_pcb_temp,
                                     max_pcb_temp);
 
-    xesc_interface->start(private_nh.param("serial_port", serial_port));
+    xesc_interface->start(private_nh.param("serial_port", serial_port), baudrate);
 }
 
 void xesc_2040_driver::Xesc2040Driver::getStatus(xesc_msgs::XescStateStamped &state_msg) {
