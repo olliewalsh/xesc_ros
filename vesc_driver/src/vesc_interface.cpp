@@ -103,6 +103,7 @@ namespace vesc_driver {
                 try {
                     serial_.setPort(port_);
                     serial_.open();
+                    serial_.setBaudrate(baudrate_);
                 } catch (std::exception &e) {
                     // retry later
                     sleep(1);
@@ -284,8 +285,9 @@ namespace vesc_driver {
         send(VescPacketSetPos(position));
     }
 
-    void VescInterface::start(const std::string &port) {
+    void VescInterface::start(const std::string &port, const uint32_t &baudrate) {
         port_ = port;
+        baudrate_ = baudrate;
         // start up a monitoring thread
         rx_thread_run_ = true;
         update_thread_run_ = true;
